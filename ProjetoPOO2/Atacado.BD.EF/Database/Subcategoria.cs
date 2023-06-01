@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Atacado.BD.EF.Database;
 
-public partial class Subcategorium
+[Table("Subcategoria")]
+public partial class Subcategoria
 {
     [Key]
     public int Codigo { get; set; }
@@ -21,10 +22,5 @@ public partial class Subcategorium
     [Column(TypeName = "datetime")]
     public DateTime? DataInclusao { get; set; }
 
-    [ForeignKey("CodigoCategoria")]
-    [InverseProperty("Subcategoria")]
-    public virtual Categorium CodigoCategoriaNavigation { get; set; } = null!;
 
-    [InverseProperty("CodigoSubcategoriaNavigation")]
-    public virtual ICollection<Produto> Produtos { get; } = new List<Produto>();
 }

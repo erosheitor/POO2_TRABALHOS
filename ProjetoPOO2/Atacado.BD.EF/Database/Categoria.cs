@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Atacado.BD.EF.Database;
 
-public partial class Categorium
+[Table("Categoria")]
+public partial class Categoria
 {
     [Key]
     public int Codigo { get; set; }
@@ -19,6 +20,4 @@ public partial class Categorium
     [Column(TypeName = "datetime")]
     public DateTime? DataInclusao { get; set; }
 
-    [InverseProperty("CodigoCategoriaNavigation")]
-    public virtual ICollection<Subcategorium> Subcategoria { get; } = new List<Subcategorium>();
 }

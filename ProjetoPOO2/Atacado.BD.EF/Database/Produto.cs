@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Atacado.BD.EF.Database;
 
 [Table("Produto")]
-public partial class Produto
+public partial class Produto 
 {
     [Key]
     public int Codigo { get; set; }
@@ -25,7 +25,5 @@ public partial class Produto
     [Column(TypeName = "datetime")]
     public DateTime? DataInclusao { get; set; }
 
-    [ForeignKey("CodigoSubcategoria")]
-    [InverseProperty("Produtos")]
-    public virtual Subcategorium CodigoSubcategoriaNavigation { get; set; } = null!;
+    
 }

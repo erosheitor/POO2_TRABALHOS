@@ -16,11 +16,11 @@ public partial class AtacadoContext : DbContext
     {
     }
 
-    public virtual DbSet<Categorium> Categoria { get; set; }
+    public virtual DbSet<Categoria> Categorias { get; set; }
 
     public virtual DbSet<Produto> Produtos { get; set; }
 
-    public virtual DbSet<Subcategorium> Subcategoria { get; set; }
+    public virtual DbSet<Subcategoria> Subcategorias { get; set; }
 
     public virtual DbSet<Regiao> Regioes { get; set; }
 
@@ -33,7 +33,7 @@ public partial class AtacadoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Categorium>(entity =>
+        modelBuilder.Entity<Categoria>(entity =>
         {
             entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");
         });
@@ -42,18 +42,14 @@ public partial class AtacadoContext : DbContext
         {
             entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.CodigoSubcategoriaNavigation).WithMany(p => p.Produtos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Produto_Subcategoria");
+            
         });
 
-        modelBuilder.Entity<Subcategorium>(entity =>
+        modelBuilder.Entity<Subcategoria>(entity =>
         {
             entity.Property(e => e.DataInclusao).HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.CodigoCategoriaNavigation).WithMany(p => p.Subcategoria)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Subcategoria_Categoria");
+           
         });
 
         modelBuilder.Entity<Regiao>();
